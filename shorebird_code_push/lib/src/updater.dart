@@ -47,4 +47,8 @@ class Updater {
   /// Frees an update result allocated by the updater.
   void freeUpdateResult(Pointer<UpdateResult> ptr) =>
       bindings.shorebird_free_update_result(ptr);
+
+  /// Reports that the app has started launching.
+  /// This will copy the next boot patch to be the current boot patch.
+  void reportLaunchStart() => bindings.shorebird_report_launch_start();
 }

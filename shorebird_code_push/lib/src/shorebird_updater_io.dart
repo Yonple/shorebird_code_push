@@ -25,12 +25,16 @@ class ShorebirdUpdaterImpl implements ShorebirdUpdater {
       : _updater = updater ?? const Updater(),
         _run = run ?? Isolate.run {
     try {
+      // Report launch start to sync current patch number after restart
+      _updater.reportLaunchStart();
+
       // If the Shorebird Engine is not available, this will throw an exception.
       // FIXME: Run this in an isolate or refactor the updater to avoid risking
       // a hang. If another thread is also calling into Shorebird at the same
       // time the underlying Rust code could block getting the config lock.
       _updater.currentPatchNumber();
       _isAvailable = true;
+
       // We explicitly catch all errors and exceptions to ensure we notify users
       // when the Shorebird Updater is unavailable.
       // ignore: avoid_catches_without_on_clauses
