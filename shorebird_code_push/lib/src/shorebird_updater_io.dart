@@ -26,7 +26,7 @@ class ShorebirdUpdaterImpl implements ShorebirdUpdater {
         _run = run ?? Isolate.run {
     try {
       // Report launch start to sync current patch number after restart
-      _updater.reportLaunchStart();
+      // _updater.reportLaunchStart(); // TODO: Implement this if needed
 
       // If the Shorebird Engine is not available, this will throw an exception.
       // FIXME: Run this in an isolate or refactor the updater to avoid risking
